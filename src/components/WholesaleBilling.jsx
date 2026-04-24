@@ -121,9 +121,10 @@ export const WholesaleBilling = () => {
 
     const total = calculateTotal();
     const paid = parseFloat(amountPaid) || total;
+    const remaining = total - paid;
 
-    if (selectedCustomer) {
-      updateCustomerBalance(selectedCustomer.id, paid);
+    if (selectedCustomer && remaining > 0) {
+      updateCustomerBalance(selectedCustomer.id, remaining);
     }
 
     createTransaction(selectedCustomer?.id || null, cartItems, 'wholesale', paid);
