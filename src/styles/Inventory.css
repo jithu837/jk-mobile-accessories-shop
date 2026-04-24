@@ -1,0 +1,167 @@
+.inventory h1 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.inventory > .btn {
+  margin-bottom: 1.5rem;
+}
+
+/* Inventory Table */
+.inventory-table {
+  margin-bottom: 2rem;
+}
+
+.inventory-table h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+}
+
+.inventory-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.inventory-table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.inventory-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+  margin: 0;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+/* Orders Section */
+.orders-section {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.orders-section h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+}
+
+.reorder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.reorder-card {
+  background: #fff;
+  padding: 1.2rem;
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.reorder-card:hover {
+  border-color: #667eea;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.reorder-card h4 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.reorder-card p {
+  color: #7f8c8d;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.reorder-input {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.reorder-input input {
+  flex: 1;
+  padding: 0.6rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.reorder-input input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.reorder-input .btn {
+  padding: 0.6rem 0.8rem;
+  white-space: nowrap;
+}
+
+/* Pending Orders */
+.pending-orders {
+  background: #e8f5e9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #56ab2f;
+}
+
+.pending-orders h2 {
+  color: #2e7d32;
+  margin-bottom: 1rem;
+}
+
+.pending-orders table {
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .inventory h1 {
+    font-size: 1.5rem;
+  }
+
+  .reorder-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-buttons .btn {
+    width: 100%;
+  }
+
+  .inventory-table {
+    overflow-x: auto;
+  }
+
+  .inventory-table table {
+    font-size: 0.9rem;
+  }
+
+  th, td {
+    padding: 0.7rem 0.5rem;
+  }
+}

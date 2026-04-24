@@ -1,0 +1,375 @@
+.balance-container {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.balance-container h1 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* Balance Summary */
+.balance-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-5px);
+}
+
+.summary-card.warning {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.summary-card h3 {
+  margin: 0 0 0.8rem 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  border: none;
+}
+
+.summary-value {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Filter Section */
+.filter-section {
+  margin-bottom: 1.5rem;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.7rem 1.2rem;
+  border: 2px solid #e0e0e0;
+  background: #fff;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #2c3e50;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.filter-btn.active {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border-color: transparent;
+}
+
+/* Balance Layout */
+.balance-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Customer List */
+.balance-left h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+}
+
+.customer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.customer-item {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.customer-item:hover {
+  border-color: #667eea;
+  background: #f0f4ff;
+}
+
+.customer-item.selected {
+  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  border-color: #667eea;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.customer-item.has-balance {
+  border-left: 4px solid #f5576c;
+}
+
+.customer-main h4 {
+  margin: 0 0 0.3rem 0;
+  color: #2c3e50;
+}
+
+.customer-phone,
+.customer-shop {
+  margin: 0.2rem 0;
+  font-size: 0.85rem;
+  color: #7f8c8d;
+}
+
+.customer-balance {
+  text-align: right;
+}
+
+/* Customer Details */
+.balance-right h2 {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+}
+
+.customer-details {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  border-top: 3px solid #667eea;
+}
+
+.detail-info {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.detail-info p {
+  margin: 0.6rem 0;
+  color: #2c3e50;
+}
+
+.detail-info strong {
+  color: #667eea;
+}
+
+.balance-display {
+  background: #e3f2fd;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  border-left: 4px solid #3498db;
+}
+
+.balance-display h3 {
+  margin: 0;
+  border: none;
+  font-size: 1.3rem;
+}
+
+.balance-display h3.outstanding {
+  color: #c62828;
+}
+
+.balance-display h3.clear {
+  color: #2e7d32;
+}
+
+.balance-clear {
+  background: #e8f5e9;
+  padding: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+/* Payment Form */
+.payment-form {
+  background: #fff;
+  padding: 1.2rem;
+  border-radius: 5px;
+  border: 2px solid #56ab2f;
+}
+
+.payment-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.payment-form input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.payment-form input:focus {
+  outline: none;
+  border-color: #56ab2f;
+}
+
+.payment-button-group {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.payment-button-group .btn {
+  flex: 1;
+  margin: 0;
+}
+
+/* Transaction History */
+.transaction-history {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-top: 3px solid #56ab2f;
+}
+
+.transaction-history h2 {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  border: none;
+}
+
+.transaction-history table {
+  background: #fff;
+}
+
+.transaction-history tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.transaction-history tbody tr:hover {
+  background: #f0f4ff;
+}
+
+/* No Selection */
+.no-selection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+/* Summary Table Section */
+.summary-table-section {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-top: 3px solid #667eea;
+  margin-top: 2rem;
+}
+
+.summary-table-section h2 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  border: none;
+}
+
+.summary-table {
+  background: #fff;
+}
+
+.summary-table tbody tr:hover {
+  background: #f0f4ff;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .balance-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .customer-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    max-height: none;
+  }
+
+  .customer-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .customer-balance {
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .balance-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .balance-summary {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .filter-buttons {
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .summary-table {
+    font-size: 0.9rem;
+  }
+
+  th, td {
+    padding: 0.7rem 0.5rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
