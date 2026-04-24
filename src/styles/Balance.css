@@ -340,11 +340,22 @@
 
 @media (max-width: 768px) {
   .balance-container h1 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
   }
 
   .balance-summary {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .summary-card {
+    padding: 1rem;
+  }
+
+  .summary-value {
+    font-size: 1.5rem;
   }
 
   .filter-buttons {
@@ -352,16 +363,80 @@
   }
 
   .filter-btn {
-    padding: 0.6rem 1rem;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  .customer-list {
+    max-height: 350px;
+  }
+
+  .customer-item {
+    padding: 0.8rem;
+  }
+
+  .customer-main h4 {
+    font-size: 0.95rem;
+  }
+
+  .customer-details {
+    padding: 1rem;
+  }
+
+  .detail-info {
+    padding: 0.8rem;
+  }
+
+  .detail-info p {
     font-size: 0.9rem;
+  }
+
+  .balance-display h3 {
+    font-size: 1.1rem;
+  }
+
+  .payment-form {
+    padding: 1rem;
+  }
+
+  .payment-button-group .btn {
+    min-height: 44px;
+  }
+
+  .transaction-history {
+    padding: 1rem;
+  }
+
+  .summary-table-section {
+    padding: 1rem;
+    margin-top: 1.5rem;
   }
 
   .summary-table {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 
   th, td {
-    padding: 0.7rem 0.5rem;
+    padding: 0.6rem 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .balance-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-buttons {
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    flex: 1 1 calc(50% - 0.5rem);
+    text-align: center;
+  }
+
+  .customer-list {
+    grid-template-columns: 1fr;
   }
 }
 

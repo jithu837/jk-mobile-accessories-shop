@@ -138,30 +138,79 @@
 /* Responsive */
 @media (max-width: 768px) {
   .inventory h1 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .inventory > .btn {
+    margin-bottom: 1rem;
   }
 
   .reorder-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+
+  .reorder-card {
+    padding: 1rem;
+  }
+
+  .reorder-card h4 {
+    font-size: 0.9rem;
+  }
+
+  .reorder-input {
+    flex-direction: column;
+  }
+
+  .reorder-input .btn {
+    width: 100%;
   }
 
   .action-buttons {
     flex-direction: column;
+    gap: 0.3rem;
   }
 
   .action-buttons .btn {
     width: 100%;
+    padding: 0.5rem;
+    min-height: 36px;
   }
 
   .inventory-table {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .inventory-table table {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    min-width: 500px;
   }
 
   th, td {
-    padding: 0.7rem 0.5rem;
+    padding: 0.6rem 0.4rem;
+  }
+
+  .form-container {
+    padding: 1.2rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 0.7rem;
+    font-size: 1rem;
+    min-height: 44px;
+  }
+
+  .orders-section,
+  .pending-orders {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .reorder-grid {
+    grid-template-columns: 1fr;
   }
 }
