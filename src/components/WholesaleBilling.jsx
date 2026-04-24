@@ -182,7 +182,7 @@ export const WholesaleBilling = () => {
                     type="text"
                     placeholder="Shop Name"
                     value={newCustomer.shop}
-                    onChange={(e) => setNewProduct({ ...newCustomer, shop: e.target.value })}
+                    onChange={(e) => setNewCustomer({ ...newCustomer, shop: e.target.value })}
                   />
                   <input
                     type="tel"
