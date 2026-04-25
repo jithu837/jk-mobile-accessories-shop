@@ -1,0 +1,208 @@
+.sales-history {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.sales-history h1 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* Summary Cards */
+.history-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.history-summary .summary-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  padding: 1.2rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.history-summary .summary-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  border: none;
+}
+
+.history-summary .summary-value {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+/* Filters */
+.history-filters {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.history-filters .search-bar {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.history-filters .search-bar:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.filter-row {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-row select,
+.filter-row input[type="date"] {
+  padding: 0.7rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  background: #fff;
+}
+
+.filter-row select:focus,
+.filter-row input[type="date"]:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+/* Table */
+.history-table-wrapper {
+  overflow-x: auto;
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  border-top: 3px solid #667eea;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  min-width: 700px;
+}
+
+.history-table thead {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+}
+
+.history-table th {
+  padding: 0.9rem 0.7rem;
+  text-align: left;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.history-table td {
+  padding: 0.8rem 0.7rem;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0.9rem;
+}
+
+.history-table tbody tr:hover {
+  background: #f0f4ff;
+}
+
+.history-table tbody tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+.history-table tbody tr:nth-child(even):hover {
+  background: #f0f4ff;
+}
+
+/* Date Cell */
+.date-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.date-cell .date {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.date-cell .time {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+}
+
+/* Product Name */
+.product-name {
+  font-weight: 600;
+  color: #2c3e50;
+  max-width: 200px;
+}
+
+/* Quantity */
+.quantity {
+  font-weight: 700;
+  color: #667eea;
+  text-align: center;
+}
+
+/* Item Total */
+.item-total {
+  font-weight: 700;
+  color: #2e7d32;
+}
+
+/* Type Badge */
+.type-badge {
+  display: inline-block;
+  padding: 0.35rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.type-badge.retail {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.type-badge.wholesale {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+/* No Data */
+.no-data {
+  text-align: center;
+  color: #7f8c8d;
+  padding: 3rem;
+  font-size: 1.1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+

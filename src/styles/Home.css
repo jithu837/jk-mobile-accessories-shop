@@ -240,38 +240,4 @@
   }
 }
 
-@media (max-width: 768px) {
-  .hero {
-    padding: 40px 15px;
-  }
 
-  .hero-content h1 {
-    font-size: 1.8rem;
-  }
-
-  .hero-content p {
-    font-size: 1rem;
-  }
-
-  .features h2,
-  .company-info h2,
-  .cta-section h2 {
-    font-size: 1.5rem;
-  }
-
-  .features-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .company-details {
-    grid-template-columns: 1fr;
-  }
-
-  .cta-buttons {
-    flex-direction: column;
-  }
-
-  .cta-btn {
-    width: 100%;
-  }
-}

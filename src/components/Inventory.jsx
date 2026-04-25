@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useShop } from '../context/ShopContext';
 import '../styles/Inventory.css';
 
@@ -14,6 +14,7 @@ export const Inventory = () => {
     category: 'accessories',
     image: '',
   });
+  const fileInputRef = useRef(null);
 
   const filteredProducts = products.filter(p =>
     p.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -72,9 +73,30 @@ export const Inventory = () => {
     }
   };
 
+  const handleBrowseGoogle = () => {
+    const query = formData.name ? encodeURIComponent(formData.name) : 'mobile+accessories';
+    window.open(`https://www.google.com/search?tbm=isch&q=${query}`, '_blank');
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      alert('Please select an image file');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setFormData({ ...formData, image: reader.result });
+    };
+    reader.readAsDataURL(file);
+  };
+
   return (
     <div className="inventory">
-      <h1>📦 Inventory Management</h1>
+      <h1>📦 Inventory Management <small style={{fontSize:'0.5em',color:'#667eea'}}>(v2)</small></h1>
 
       <button className="btn btn-primary" onClick={() => setShowForm(!showForm)}>
         {showForm ? '❌ Cancel' : '➕ Add New Product'}
@@ -126,17 +148,54 @@ export const Inventory = () => {
               </select>
             </div>
             <div className="form-group">
-              <label>Image URL (Google Images / any link)</label>
-              <input
-                type="url"
-                name="image"
-                value={formData.image}
-                onChange={handleInputChange}
-                placeholder="Paste image URL here..."
-              />
-              <small style={{ color: '#666', fontSize: '0.8rem' }}>
-                Tip: Right-click image on Google → "Copy image address"
-              </small>
+              <label>Product Image</label>
+              {/* File upload - visible on all devices */}
+              <div className="file-upload-group">
+                <input
+                  type="file"
+                  accept="image/*"
+                  capture="environment"
+                  onChange={handleFileChange}
+                  className="visible-file-input"
+                />
+              </div>
+
+              {/* OR separator */}
+              <div className="or-separator">
+                <span>— OR paste image URL —</span>
+              </div>
+
+              {/* URL input */}
+              <div className="image-input-group">
+                <input
+                  type="url"
+                  name="image"
+                  value={formData.image && formData.image.startsWith('data:') ? '' : formData.image}
+                  onChange={handleInputChange}
+                  placeholder="Paste image URL here..."
+                />
+                <button
+                  type="button"
+                  className="btn btn-primary browse-btn"
+                  onClick={handleBrowseGoogle}
+                >
+                  🔍 Google Images
+                </button>
+              </div>
+
+              {/* Image preview */}
+              {formData.image && (
+                <div className="image-preview">
+                  <img src={formData.image} alt="Preview" />
+                  <button
+                    type="button"
+                    className="btn-remove-image"
+                    onClick={() => setFormData({ ...formData, image: '' })}
+                  >
+                    ❌ Remove
+                  </button>
+                </div>
+              )}
             </div>
             <button type="submit" className="btn btn-success">
               {editingId ? '✏️ Update Product' : '✅ Add Product'}

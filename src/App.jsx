@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ShopProvider } from './context/ShopContext';
 import { Home } from './components/Home';
 import { Dashboard } from './components/Dashboard';
@@ -6,33 +6,20 @@ import { Inventory } from './components/Inventory';
 import { RetailBilling } from './components/RetailBilling';
 import { WholesaleBilling } from './components/WholesaleBilling';
 import { CustomerBalance } from './components/CustomerBalance';
+import { SalesHistory } from './components/SalesHistory';
 import './App.css';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [isLoading, setIsLoading] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Handle page changes with loading state
   const handlePageChange = (page) => {
     setIsLoading(true);
     setCurrentPage(page);
-    setMobileMenuOpen(false);
     // Simulate loading for better UX
     setTimeout(() => setIsLoading(false), 300);
   };
-
-  // Close mobile menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (mobileMenuOpen && !event.target.closest('.navbar')) {
-        setMobileMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, [mobileMenuOpen]);
 
   const renderPage = () => {
     if (isLoading) {
@@ -57,6 +44,8 @@ function App() {
         return <WholesaleBilling />;
       case 'balance':
         return <CustomerBalance />;
+      case 'sales':
+        return <SalesHistory />;
       default:
         return <Home setCurrentPage={handlePageChange} />;
     }
@@ -69,6 +58,7 @@ function App() {
     { id: 'retail', label: 'Retail', icon: '🛒' },
     { id: 'wholesale', label: 'Wholesale', icon: '📊' },
     { id: 'balance', label: 'Balance', icon: '💳' },
+    { id: 'sales', label: 'Sales History', icon: '📜' },
   ];
 
   return (
@@ -80,16 +70,7 @@ function App() {
               <h1>📱 JK Mobile Accessories</h1>
             </div>
             
-            {/* Mobile menu toggle */}
-            <button 
-              className="mobile-menu-toggle"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? '✕' : '☰'}
-            </button>
-
-            <ul className={`nav-menu ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+            <ul className="nav-menu">
               {navItems.map(item => (
                 <li key={item.id}>
                   <button
@@ -143,3 +124,4 @@ function App() {
 }
 
 export default App;
+

@@ -112,6 +112,13 @@ export const Dashboard = ({ setCurrentPage }) => {
             <span className="action-icon">💳</span>
             <span>Customer Balance</span>
           </button>
+          <button 
+            className="action-btn"
+            onClick={() => setCurrentPage('sales')}
+          >
+            <span className="action-icon">📜</span>
+            <span>Sales History</span>
+          </button>
         </div>
       </div>
     </div>

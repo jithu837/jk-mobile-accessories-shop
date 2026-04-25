@@ -49,6 +49,13 @@ A comprehensive React-based application designed to manage retail and wholesale 
 - One-click reorder creation
 - Track pending orders with status
 
+### 7. **📜 Sales History**
+- View complete sales records with product-level detail
+- Filter by transaction type (Retail, Wholesale), date, or search query
+- Summary cards showing total sales, items sold, and transaction count
+- Responsive table with date/time breakdown per sale item
+- Real-time stats that update based on active filters
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -93,7 +100,8 @@ src/
 │   ├── Inventory.jsx             # Inventory management
 │   ├── RetailBilling.jsx         # Retail billing system
 │   ├── WholesaleBilling.jsx      # Wholesale billing system
-│   └── CustomerBalance.jsx       # Balance tracking
+│   ├── CustomerBalance.jsx       # Balance tracking
+│   └── SalesHistory.jsx          # Sales history & records
 ├── styles/
 │   ├── Dashboard.css
 │   ├── Inventory.css
