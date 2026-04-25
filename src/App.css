@@ -72,6 +72,15 @@ body {
   color: #fff;
 }
 
+.nav-link.logout-btn {
+  background: linear-gradient(90deg, #e74c3c 0%, #c0392b 100%);
+  color: #fff;
+}
+
+.nav-link.logout-btn:hover {
+  background: linear-gradient(90deg, #c0392b 0%, #a93226 100%);
+}
+
 /* Main Content */
 .main-content {
   flex: 1;

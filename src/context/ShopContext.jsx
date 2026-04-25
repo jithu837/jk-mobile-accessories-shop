@@ -2,6 +2,35 @@ import React, { createContext, useState, useCallback } from 'react';
 
 export const ShopContext = createContext();
 
+// Admin Authentication Helpers
+const ADMIN_STORAGE_KEY = 'shop_admin_auth';
+const OTP_EXPIRY_MS = 5 * 60 * 1000; // 5 minutes
+
+const getAdminAuth = () => {
+  try {
+    const stored = localStorage.getItem(ADMIN_STORAGE_KEY);
+    if (stored) {
+      const data = JSON.parse(stored);
+      // Check if session is still valid (24 hours)
+      if (data.timestamp && Date.now() - data.timestamp < 24 * 60 * 60 * 1000) {
+        return data;
+      }
+      localStorage.removeItem(ADMIN_STORAGE_KEY);
+    }
+  } catch (e) {
+    console.error('Auth read error:', e);
+  }
+  return null;
+};
+
+const saveAdminAuth = (phone) => {
+  localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify({ phone, timestamp: Date.now() }));
+};
+
+const clearAdminAuth = () => {
+  localStorage.removeItem(ADMIN_STORAGE_KEY);
+};
+
 const defaultProducts = [
   { id: 1, name: 'iPhone 13 Case', price: 500, quantity: 50, category: 'accessories', description: 'Premium protective case', image: 'https://picsum.photos/seed/iphonecase/150/150' },
   { id: 2, name: 'Samsung Galaxy Case', price: 400, quantity: 30, category: 'accessories', description: 'Durable hard case', image: 'https://picsum.photos/seed/samsungcase/150/150' },
@@ -43,6 +72,47 @@ export const ShopProvider = ({ children }) => {
   const [customers, setCustomers] = useState(() => getInitialState('customers', defaultCustomers));
   const [transactions, setTransactions] = useState(() => getInitialState('transactions', defaultTransactions));
   const [lowStockThreshold, setLowStockThreshold] = useState(() => getInitialState('lowStockThreshold', 20));
+
+  // Admin Auth State
+  const [adminAuth, setAdminAuth] = useState(() => getAdminAuth());
+  const [generatedOtp, setGeneratedOtp] = useState(null);
+  const [otpExpiry, setOtpExpiry] = useState(null);
+
+  const isAdminLoggedIn = !!adminAuth;
+
+  // Send OTP (simulated — shows alert with OTP)
+  const sendOtp = useCallback((phone) => {
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const expiry = Date.now() + OTP_EXPIRY_MS;
+    setGeneratedOtp(otp);
+    setOtpExpiry(expiry);
+    // Simulate SMS by showing alert
+    window.alert(`Your OTP for JK Mobile Accessories Admin Login is: ${otp}\n\n(Valid for 5 minutes)`);
+    return otp;
+  }, []);
+
+  // Verify OTP and login
+  const verifyOtpAndLogin = useCallback((phone, enteredOtp) => {
+    if (!generatedOtp || !otpExpiry || Date.now() > otpExpiry) {
+      return { success: false, message: 'OTP has expired. Please request a new one.' };
+    }
+    if (enteredOtp.trim() !== generatedOtp) {
+      return { success: false, message: 'Invalid OTP. Please try again.' };
+    }
+    saveAdminAuth(phone);
+    setAdminAuth({ phone, timestamp: Date.now() });
+    setGeneratedOtp(null);
+    setOtpExpiry(null);
+    return { success: true, message: 'Login successful!' };
+  }, [generatedOtp, otpExpiry]);
+
+  // Logout
+  const logoutAdmin = useCallback(() => {
+    clearAdminAuth();
+    setAdminAuth(null);
+    setGeneratedOtp(null);
+    setOtpExpiry(null);
+  }, []);
 
   // Save to localStorage helper
   const saveToStorage = (key, value) => {
@@ -167,6 +237,15 @@ export const ShopProvider = ({ children }) => {
     transactions,
     lowStockThreshold,
     setLowStockThreshold: handleSetLowStockThreshold,
+
+    // Auth State
+    isAdminLoggedIn,
+    adminPhone: adminAuth?.phone || null,
+
+    // Auth Methods
+    sendOtp,
+    verifyOtpAndLogin,
+    logoutAdmin,
 
     // Product methods
     addProduct,
