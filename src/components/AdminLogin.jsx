@@ -16,18 +16,24 @@ export const AdminLogin = () => {
     return cleaned.length === 10;
   };
 
-  const handleSendOtp = () => {
+  const handleSendOtp = async () => {
     setError('');
     if (!validatePhone(phone)) {
       setError('Please enter a valid 10-digit mobile number.');
       return;
     }
     setLoading(true);
-    const cleanedPhone = phone.replace(/\D/g, '');
-    sendOtp(cleanedPhone);
-    setOtpSent(true);
-    setLoading(false);
-    startCountdown();
+    try {
+      const cleanedPhone = phone.replace(/\D/g, '');
+      await sendOtp(cleanedPhone);
+      setOtpSent(true);
+      startCountdown();
+    } catch (err) {
+      console.error('Send OTP error:', err);
+      setError('Failed to send OTP. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const startCountdown = () => {

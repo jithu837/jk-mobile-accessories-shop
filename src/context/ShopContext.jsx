@@ -80,14 +80,43 @@ export const ShopProvider = ({ children }) => {
 
   const isAdminLoggedIn = !!adminAuth;
 
-  // Send OTP (simulated — shows alert with OTP)
-  const sendOtp = useCallback((phone) => {
+  // Send OTP via Fast2SMS API
+  const sendOtp = useCallback(async (phone) => {
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const expiry = Date.now() + OTP_EXPIRY_MS;
     setGeneratedOtp(otp);
     setOtpExpiry(expiry);
-    // Simulate SMS by showing alert
-    window.alert(`Your OTP for JK Mobile Accessories Admin Login is: ${otp}\n\n(Valid for 5 minutes)`);
+
+    const apiKey = import.meta.env.VITE_FAST2SMS_API_KEY;
+
+    if (apiKey && apiKey !== 'YOUR_FAST2SMS_API_KEY_HERE') {
+      try {
+        const response = await fetch('https://www.fast2sms.com/dev/bulkV2', {
+          method: 'POST',
+          headers: {
+            'authorization': apiKey,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            variables_values: otp,
+            route: 'otp',
+            numbers: phone,
+          }),
+        });
+        const data = await response.json();
+        if (!data.return) {
+          console.error('Fast2SMS error:', data);
+          window.alert(`SMS failed. OTP: ${otp}`);
+        }
+      } catch (err) {
+        console.error('SMS request failed:', err);
+        window.alert(`SMS failed. OTP: ${otp}`);
+      }
+    } else {
+      // Fallback: show alert if no API key configured
+      window.alert(`Your OTP for JK Mobile Accessories Admin Login is: ${otp}\n\n(Valid for 5 minutes)`);
+    }
+
     return otp;
   }, []);
 
@@ -281,3 +310,4 @@ export const useShop = () => {
   }
   return context;
 };
+
